@@ -9,6 +9,7 @@ public class Team {
 	private String about;
 	private List<String> coreSkills;
 	private List<User> members;
+	private List<TeamAchievement> teamAchievements;
 
 	public String getTeamName() {
 		return teamName;
@@ -56,6 +57,14 @@ public class Team {
 
 	public void setMembers(List<User> members) {
 		this.members = members;
+	}
+
+	public List<TeamAchievement> getTeamAchievements() {
+		return teamAchievements;
+	}
+
+	public void setTeamAchievements(List<TeamAchievement> teamAchievements) {
+		this.teamAchievements = teamAchievements;
 	}
 
 }

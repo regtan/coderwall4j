@@ -22,6 +22,11 @@ public class CoderwallTeamHtmlScraperTest {
 		assertThat(team.getCoreSkills(),
 				hasItems("ruby", "javascript", "java", "coffeescript", "c", "mysql", "git", "python"));
 
+		assertThat(team.getTeamAchievements().get(0).getAchievementNo(), is(7L));
+		assertThat(team.getTeamAchievements().get(0).getAchievementName(), is("Charity"));
+		assertThat(team.getTeamAchievements().get(0).getAchievementImgSourceUrl(),
+				is("http://cdn.coderwall.com/assets/badges/charity-bf61e713137d910534ff805f389bcffb.png"));
+
 	}
 
 }

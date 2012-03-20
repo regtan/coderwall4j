@@ -9,6 +9,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.kirino.coderwall4j.model.Team;
+import org.kirino.coderwall4j.model.TeamAchievement;
 
 public class CoderwallTeamHtmlScraper {
 	public final String CODERWALL_TEAM_BASE_URL = "http://coderwall.com/teams/";
@@ -26,6 +27,7 @@ public class CoderwallTeamHtmlScraper {
 		team.setLocation(scrapeLocation(doc));
 		team.setAbout(scrapeAbout(doc));
 		team.setCoreSkills(scrapeCoreSkills(doc));
+		team.setTeamAchievements(scrapeTeamAchievements(doc));
 
 		return team;
 	}
@@ -70,6 +72,23 @@ public class CoderwallTeamHtmlScraper {
 			list.add(element.text());
 		}
 		return list;
+	}
+
+	private List<TeamAchievement> scrapeTeamAchievements(Document doc) {
+		List<TeamAchievement> teamAchievements = new ArrayList<TeamAchievement>();
+		Elements elements = doc.select("div.side-panel.side-achievements ul li");
+		for (Element element : elements) {
+			TeamAchievement achievement = new TeamAchievement();
+			for (Element achievementNoElement : element.getElementsByClass("achievement-no")) {
+				achievement.setAchievementNo(Long.valueOf(achievementNoElement.text()));
+			}
+			for (Element badgeElement : element.getElementsByTag("img")) {
+				achievement.setAchievementName(badgeElement.attr("alt"));
+				achievement.setAchievementImgSourceUrl(badgeElement.attr("src"));
+			}
+			teamAchievements.add(achievement);
+		}
+		return teamAchievements;
 	}
 
 }
