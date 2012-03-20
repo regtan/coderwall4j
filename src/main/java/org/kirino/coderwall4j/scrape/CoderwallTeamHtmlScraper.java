@@ -108,6 +108,9 @@ public class CoderwallTeamHtmlScraper {
 			for (Element discriptionElement : element.getElementsByTag("h4")) {
 				user.setDiscription(discriptionElement.text());
 			}
+			user.setAchievements(Long.valueOf(getText(doc, "a[href=/" + user.getUserId() + "] ul li.card-achievements")));
+			user.setEndorsements(Long.valueOf(getText(doc, "a[href=/" + user.getUserId() + "] ul li.card-endorsements")));
+
 			teamMembers.add(user);
 		}
 		return teamMembers;

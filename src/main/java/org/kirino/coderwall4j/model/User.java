@@ -5,6 +5,8 @@ public class User {
 	private String userName;
 	private String avaterImgSourceUrl;
 	private String discription;
+	private Long achievements;
+	private Long endorsements;
 
 	public String getUserId() {
 		return userId;
@@ -36,6 +38,22 @@ public class User {
 
 	public void setDiscription(String discription) {
 		this.discription = discription;
+	}
+
+	public Long getAchievements() {
+		return achievements;
+	}
+
+	public void setAchievements(Long achievements) {
+		this.achievements = achievements;
+	}
+
+	public Long getEndorsements() {
+		return endorsements;
+	}
+
+	public void setEndorsements(Long endorsements) {
+		this.endorsements = endorsements;
 	}
 
 }
