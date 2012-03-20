@@ -7,6 +7,7 @@ public class Team {
 	private String url;
 	private String location;
 	private String about;
+	private List<String> coreSkills;
 	private List<User> members;
 
 	public String getTeamName() {
@@ -39,6 +40,14 @@ public class Team {
 
 	public void setAbout(String about) {
 		this.about = about;
+	}
+
+	public List<String> getCoreSkills() {
+		return coreSkills;
+	}
+
+	public void setCoreSkills(List<String> coreSkills) {
+		this.coreSkills = coreSkills;
 	}
 
 	public List<User> getMembers() {

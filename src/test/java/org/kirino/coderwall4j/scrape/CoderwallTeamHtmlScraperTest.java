@@ -2,6 +2,7 @@ package org.kirino.coderwall4j.scrape;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.matchers.JUnitMatchers.hasItems;
 
 import java.io.IOException;
 
@@ -18,6 +19,9 @@ public class CoderwallTeamHtmlScraperTest {
 		assertThat(team.getUrl(), is("http://seiga.nicovideo.jp/book/"));
 		assertThat(team.getLocation(), is("Hamacho"));
 		assertThat(team.getAbout(), is("The Team Nicobook in Dwango inc."));
+		assertThat(team.getCoreSkills(),
+				hasItems("ruby", "javascript", "java", "coffeescript", "c", "mysql", "git", "python"));
+
 	}
 
 }

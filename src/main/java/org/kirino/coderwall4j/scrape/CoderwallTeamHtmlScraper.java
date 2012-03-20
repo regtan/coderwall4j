@@ -1,6 +1,8 @@
 package org.kirino.coderwall4j.scrape;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -23,6 +25,7 @@ public class CoderwallTeamHtmlScraper {
 		team.setUrl(scrapeUrl(doc));
 		team.setLocation(scrapeLocation(doc));
 		team.setAbout(scrapeAbout(doc));
+		team.setCoreSkills(scrapeCoreSkills(doc));
 
 		return team;
 	}
@@ -47,6 +50,10 @@ public class CoderwallTeamHtmlScraper {
 		return getText(doc, "div.about-team p");
 	}
 
+	private List<String> scrapeCoreSkills(Document doc) {
+		return getList(doc, "div.side-panel.core-skills ul li");
+	}
+
 	private String getText(Document doc, String query) {
 		String text = "";
 		Elements elements = doc.select(query);
@@ -54,6 +61,15 @@ public class CoderwallTeamHtmlScraper {
 			text = element.text();
 		}
 		return text;
+	}
+
+	private List<String> getList(Document doc, String query) {
+		List<String> list = new ArrayList<String>();
+		Elements elements = doc.select(query);
+		for (Element element : elements) {
+			list.add(element.text());
+		}
+		return list;
 	}
 
 }
