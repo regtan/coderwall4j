@@ -27,6 +27,12 @@ public class CoderwallTeamHtmlScraperTest {
 		assertThat(team.getTeamAchievements().get(0).getAchievementImgSourceUrl(),
 				is("http://cdn.coderwall.com/assets/badges/charity-bf61e713137d910534ff805f389bcffb.png"));
 
+		assertThat(team.getMembers().get(0).getUserId(), is("masarakki"));
+		assertThat(
+				team.getMembers().get(0).getAvaterImgSourceUrl(),
+				is("https://secure.gravatar.com/avatar/d52c8b0a24dfaec053feba8ba4125ac5?d=http://cdn.coderwall.com/assets/blank-mugshot-cd8f375611cece404f4d3797dd07b141.png"));
+		assertThat(team.getMembers().get(0).getUserName(), is("yamada masaki"));
+		assertThat(team.getMembers().get(0).getDiscription(), is("Anime Driven Development"));
 	}
 
 }

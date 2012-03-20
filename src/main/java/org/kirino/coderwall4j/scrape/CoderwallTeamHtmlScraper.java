@@ -10,6 +10,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.kirino.coderwall4j.model.Team;
 import org.kirino.coderwall4j.model.TeamAchievement;
+import org.kirino.coderwall4j.model.User;
 
 public class CoderwallTeamHtmlScraper {
 	public final String CODERWALL_TEAM_BASE_URL = "http://coderwall.com/teams/";
@@ -28,6 +29,7 @@ public class CoderwallTeamHtmlScraper {
 		team.setAbout(scrapeAbout(doc));
 		team.setCoreSkills(scrapeCoreSkills(doc));
 		team.setTeamAchievements(scrapeTeamAchievements(doc));
+		team.setMembers(scrapeMembers(doc));
 
 		return team;
 	}
@@ -89,6 +91,27 @@ public class CoderwallTeamHtmlScraper {
 			teamAchievements.add(achievement);
 		}
 		return teamAchievements;
+	}
+
+	private List<User> scrapeMembers(Document doc) {
+		List<User> teamMembers = new ArrayList<User>();
+		Elements elements = doc.select("div.member-top");
+		for (Element element : elements) {
+			User user = new User();
+			for (Element avaterElement : element.getElementsByTag("img")) {
+				user.setUserId(avaterElement.attr("alt"));
+				user.setAvaterImgSourceUrl(avaterElement.attr("src"));
+			}
+			for (Element nameElement : element.getElementsByTag("h3")) {
+				user.setUserName(nameElement.text());
+			}
+			for (Element discriptionElement : element.getElementsByTag("h4")) {
+				user.setDiscription(discriptionElement.text());
+			}
+			teamMembers.add(user);
+		}
+		return teamMembers;
+
 	}
 
 }
