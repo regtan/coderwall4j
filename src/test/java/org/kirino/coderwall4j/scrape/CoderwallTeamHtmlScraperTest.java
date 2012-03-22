@@ -3,24 +3,26 @@ package org.kirino.coderwall4j.scrape;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.matchers.JUnitMatchers.hasItems;
-
-import java.io.IOException;
+import mockit.Mockit;
 
 import org.junit.Test;
 import org.kirino.coderwall4j.model.Team;
+import org.kirino.coderwall4j.util.HttpClient;
 
 public class CoderwallTeamHtmlScraperTest {
 
+
 	@Test
-	public void nicobookのデータが取れること() throws IOException {
+	public void nicobookのデータが取れること() throws Exception {
+		Mockit.setUpMock(HttpClient.class, HttpClientMock.class);
+
 		CoderwallTeamHtmlScraper cts = new CoderwallTeamHtmlScraper("4f61c42bdb6418000a000001");
 		Team team = cts.scrapeTeamData();
 		assertThat(team.getTeamName(), is("nicobook"));
 		assertThat(team.getUrl(), is("http://seiga.nicovideo.jp/book/"));
 		assertThat(team.getLocation(), is("Hamacho"));
 		assertThat(team.getAbout(), is("The Team Nicobook in Dwango inc."));
-		assertThat(team.getCoreSkills(),
-				hasItems("ruby", "javascript", "java", "coffeescript", "c", "mysql", "git", "python"));
+		assertThat(team.getCoreSkills(), hasItems("ruby", "javascript", "java", "coffeescript", "c", "mysql", "git", "objective-c"));
 
 		assertThat(team.getTeamAchievements().get(0).getAchievementNo(), is(7L));
 		assertThat(team.getTeamAchievements().get(0).getAchievementName(), is("Charity"));
@@ -34,7 +36,7 @@ public class CoderwallTeamHtmlScraperTest {
 		assertThat(team.getMembers().get(0).getUserName(), is("yamada masaki"));
 		assertThat(team.getMembers().get(0).getDiscription(), is("Anime Driven Development"));
 		assertThat(team.getMembers().get(0).getAchievements(), is(9L));
-		assertThat(team.getMembers().get(0).getEndorsements(), is(0L));
+		assertThat(team.getMembers().get(0).getEndorsements(), is(1L));
 	}
 
 }

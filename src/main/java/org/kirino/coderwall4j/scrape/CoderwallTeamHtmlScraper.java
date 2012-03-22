@@ -1,27 +1,26 @@
 package org.kirino.coderwall4j.scrape;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.kirino.coderwall4j.model.Team;
 import org.kirino.coderwall4j.model.TeamAchievement;
 import org.kirino.coderwall4j.model.User;
+import org.kirino.coderwall4j.util.HttpClient;
 
 public class CoderwallTeamHtmlScraper {
-	public final String CODERWALL_TEAM_BASE_URL = "http://coderwall.com/teams/";
+
 	final String teamId;
 
 	public CoderwallTeamHtmlScraper(String teamId) {
 		this.teamId = teamId;
 	}
 
-	public Team scrapeTeamData() throws IOException {
-		Document doc = Jsoup.connect(createTeamBaseUrl(teamId)).timeout(20000).get();
+	public Team scrapeTeamData() throws Exception {
+		Document doc = HttpClient.getDocument(teamId);
 		Team team = new Team();
 		team.setTeamName(scrapeTeamName(doc));
 		team.setUrl(scrapeUrl(doc));
@@ -34,9 +33,7 @@ public class CoderwallTeamHtmlScraper {
 		return team;
 	}
 
-	private String createTeamBaseUrl(String teamId) {
-		return CODERWALL_TEAM_BASE_URL + teamId;
-	}
+
 
 	private String scrapeTeamName(Document doc) {
 		return getText(doc, ".team-header h1");
@@ -116,5 +113,4 @@ public class CoderwallTeamHtmlScraper {
 		return teamMembers;
 
 	}
-
 }
