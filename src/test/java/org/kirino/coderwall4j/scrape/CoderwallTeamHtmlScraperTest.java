@@ -23,7 +23,7 @@ public class CoderwallTeamHtmlScraperTest {
 	public void nicobookのデータが取れること() throws Exception {
 		new Expectations() {
 			{
-				HttpClient.getDocument("4f61c42bdb6418000a000001");
+				HttpClient.getTeamDocument("4f61c42bdb6418000a000001");
 				result = Jsoup.parse(FileUtils.readFileToString(new File("src/test/resources/nicobook.html")));
 			}
 		};

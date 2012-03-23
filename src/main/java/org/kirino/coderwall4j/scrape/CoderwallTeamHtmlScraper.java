@@ -20,7 +20,7 @@ public class CoderwallTeamHtmlScraper {
 	}
 
 	public Team scrapeTeamData() throws Exception {
-		Document doc = HttpClient.getDocument(teamId);
+		Document doc = HttpClient.getTeamDocument(teamId);
 		Team team = new Team();
 		team.setTeamName(scrapeTeamName(doc));
 		team.setUrl(scrapeUrl(doc));
