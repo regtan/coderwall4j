@@ -36,7 +36,7 @@
   			<version>2.12</version>
   			<configuration>
   				<argLine>
-  					-javaagent:"${settings.localRepository}"/com/googlecode/jmockit/jmockit/0.999.14/jmockit-0.999.14.jar
+  					-javaagent:"${settings.localRepository}"/mockit/jmockit/0.999.4/jmockit-0.999.4.jar
   				</argLine>
   			</configuration>
   		</plugin>
