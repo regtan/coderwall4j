@@ -10,6 +10,7 @@ public class Team {
 	private String inviteUrl;
 	private Integer teamScore;
 	private Integer teamRank;
+	private TeamStats teamStats;
 	private List<String> coreSkills;
 	private List<User> members;
 	private List<TeamAchievement> teamAchievements;
@@ -46,30 +47,6 @@ public class Team {
 		this.about = about;
 	}
 
-	public List<String> getCoreSkills() {
-		return coreSkills;
-	}
-
-	public void setCoreSkills(List<String> coreSkills) {
-		this.coreSkills = coreSkills;
-	}
-
-	public List<User> getMembers() {
-		return members;
-	}
-
-	public void setMembers(List<User> members) {
-		this.members = members;
-	}
-
-	public List<TeamAchievement> getTeamAchievements() {
-		return teamAchievements;
-	}
-
-	public void setTeamAchievements(List<TeamAchievement> teamAchievements) {
-		this.teamAchievements = teamAchievements;
-	}
-
 	public String getInviteUrl() {
 		return inviteUrl;
 	}
@@ -92,6 +69,38 @@ public class Team {
 
 	public void setTeamRank(Integer teamRank) {
 		this.teamRank = teamRank;
+	}
+
+	public TeamStats getTeamStats() {
+		return teamStats;
+	}
+
+	public void setTeamStats(TeamStats teamStats) {
+		this.teamStats = teamStats;
+	}
+
+	public List<String> getCoreSkills() {
+		return coreSkills;
+	}
+
+	public void setCoreSkills(List<String> coreSkills) {
+		this.coreSkills = coreSkills;
+	}
+
+	public List<User> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<User> members) {
+		this.members = members;
+	}
+
+	public List<TeamAchievement> getTeamAchievements() {
+		return teamAchievements;
+	}
+
+	public void setTeamAchievements(List<TeamAchievement> teamAchievements) {
+		this.teamAchievements = teamAchievements;
 	}
 
 }

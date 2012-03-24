@@ -39,6 +39,10 @@ public class CoderwallTeamHtmlScraperTest {
 		assertThat(team.getInviteUrl(), is("http://coderwall.com/i/4f61c42bdb6418000a000001/73TO0Y5813E"));
 		assertThat(team.getTeamScore(), is(153));
 		assertThat(team.getTeamRank(), is(141));
+		assertThat(team.getTeamStats().getViews(), is(587L));
+		assertThat(team.getTeamStats().getFollowers(), is(18L));
+		assertThat(team.getTeamStats().getCollectiveDaysOnGitHub(), is(11536L));
+		assertThat(team.getTeamStats().getCollectiveDaysOnTwitter(), is(17022L));
 		assertThat(team.getTeamAchievements().get(0).getAchievementNo(), is(7L));
 		assertThat(team.getTeamAchievements().get(0).getAchievementName(), is("Charity"));
 		assertThat(team.getTeamAchievements().get(0).getAchievementImgSourceUrl(),

@@ -9,6 +9,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.kirino.coderwall4j.model.Team;
 import org.kirino.coderwall4j.model.TeamAchievement;
+import org.kirino.coderwall4j.model.TeamStats;
 import org.kirino.coderwall4j.model.User;
 import org.kirino.coderwall4j.util.HttpClient;
 
@@ -31,10 +32,23 @@ public class CoderwallTeamHtmlScraper {
 		team.setInviteUrl(scrapeInveiteUrl(doc));
 		team.setTeamScore(scrapeTeamScore(doc));
 		team.setTeamRank(scrapeTeamRank(doc));
+		team.setTeamStats(scrapeTeamStats(doc));
 		team.setTeamAchievements(scrapeTeamAchievements(doc));
 		team.setMembers(scrapeMembers(doc));
 
 		return team;
+	}
+
+	private TeamStats scrapeTeamStats(Document doc) {
+		TeamStats teamStats = new TeamStats();
+		Elements elements = doc.select("div.side-panel.team-stats ul li");
+
+		teamStats.setViews(getLongValue(elements.get(0)));
+		teamStats.setFollowers(getLongValue(elements.get(1)));
+		teamStats.setCollectiveDaysOnGitHub(getLongValue(elements.get(2)));
+		teamStats.setCollectiveDaysOnTwitter(getLongValue(elements.get(3)));
+
+		return teamStats;
 	}
 
 	private Integer scrapeTeamRank(Document doc) {
@@ -127,6 +141,10 @@ public class CoderwallTeamHtmlScraper {
 			teamMembers.add(user);
 		}
 		return teamMembers;
+	}
 
+	private Long getLongValue(Element element) {
+		String str = StringUtils.trim(element.ownText()).replace(",", "").replace("\"", "");
+		return StringUtils.isNumeric(str) ? Long.valueOf(str) : 0;
 	}
 }
