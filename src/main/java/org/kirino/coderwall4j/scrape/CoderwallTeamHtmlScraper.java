@@ -3,6 +3,7 @@ package org.kirino.coderwall4j.scrape;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -28,10 +29,22 @@ public class CoderwallTeamHtmlScraper {
 		team.setAbout(scrapeAbout(doc));
 		team.setCoreSkills(scrapeCoreSkills(doc));
 		team.setInviteUrl(scrapeInveiteUrl(doc));
+		team.setTeamScore(scrapeTeamScore(doc));
+		team.setTeamRank(scrapeTeamRank(doc));
 		team.setTeamAchievements(scrapeTeamAchievements(doc));
 		team.setMembers(scrapeMembers(doc));
 
 		return team;
+	}
+
+	private Integer scrapeTeamRank(Document doc) {
+		String teamRank = getText(doc, "li.your-rank span");
+		return StringUtils.isBlank(teamRank) ? 0 : Integer.valueOf(teamRank.substring(0, teamRank.length() - 2));
+	}
+
+	private Integer scrapeTeamScore(Document doc) {
+		String teamScore = getText(doc, "li.your-rank div.disc p");
+		return StringUtils.isBlank(teamScore) ? 0 : Integer.valueOf(teamScore);
 	}
 
 	private String scrapeInveiteUrl(Document doc) {

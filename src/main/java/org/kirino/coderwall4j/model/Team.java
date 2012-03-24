@@ -8,6 +8,8 @@ public class Team {
 	private String location;
 	private String about;
 	private String inviteUrl;
+	private Integer teamScore;
+	private Integer teamRank;
 	private List<String> coreSkills;
 	private List<User> members;
 	private List<TeamAchievement> teamAchievements;
@@ -74,6 +76,22 @@ public class Team {
 
 	public void setInviteUrl(String inviteUrl) {
 		this.inviteUrl = inviteUrl;
+	}
+
+	public Integer getTeamScore() {
+		return teamScore;
+	}
+
+	public void setTeamScore(Integer teamScore) {
+		this.teamScore = teamScore;
+	}
+
+	public Integer getTeamRank() {
+		return teamRank;
+	}
+
+	public void setTeamRank(Integer teamRank) {
+		this.teamRank = teamRank;
 	}
 
 }
