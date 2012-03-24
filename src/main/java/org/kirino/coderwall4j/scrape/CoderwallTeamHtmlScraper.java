@@ -11,7 +11,7 @@ import org.kirino.coderwall4j.model.Team;
 import org.kirino.coderwall4j.model.TeamAchievement;
 import org.kirino.coderwall4j.model.TeamStats;
 import org.kirino.coderwall4j.model.User;
-import org.kirino.coderwall4j.util.HttpClient;
+import org.kirino.coderwall4j.util.CorderwallHttpClient;
 
 public class CoderwallTeamHtmlScraper {
 
@@ -22,7 +22,7 @@ public class CoderwallTeamHtmlScraper {
 	}
 
 	public Team scrapeTeamData() throws Exception {
-		Document doc = HttpClient.getTeamDocument(teamId);
+		Document doc = CorderwallHttpClient.getTeamDocument(teamId);
 		Team team = new Team();
 		team.setTeamName(scrapeTeamName(doc));
 		team.setUrl(scrapeUrl(doc));

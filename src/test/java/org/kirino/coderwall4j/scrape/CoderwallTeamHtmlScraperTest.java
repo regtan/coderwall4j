@@ -13,17 +13,17 @@ import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.junit.Test;
 import org.kirino.coderwall4j.model.Team;
-import org.kirino.coderwall4j.util.HttpClient;
+import org.kirino.coderwall4j.util.CorderwallHttpClient;
 
 public class CoderwallTeamHtmlScraperTest {
 	@Mocked
-	final HttpClient httpClient = null;
+	final CorderwallHttpClient httpClient = null;
 
 	@Test
 	public void nicobookのデータが取れること() throws Exception {
 		new Expectations() {
 			{
-				HttpClient.getTeamDocument("4f61c42bdb6418000a000001");
+				CorderwallHttpClient.getTeamDocument("4f61c42bdb6418000a000001");
 				result = Jsoup.parse(FileUtils.readFileToString(new File("src/test/resources/nicobook.html")));
 			}
 		};

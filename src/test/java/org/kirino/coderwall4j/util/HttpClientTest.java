@@ -21,6 +21,6 @@ public class HttpClientTest {
 				result = new IOException();
 			}
 		};
-		HttpClient.getTeamDocument("4f61c42bdb6418000a000001");
+		CorderwallHttpClient.getTeamDocument("4f61c42bdb6418000a000001");
 	}
 }
