@@ -27,13 +27,16 @@ public class CoderwallTeamHtmlScraper {
 		team.setLocation(scrapeLocation(doc));
 		team.setAbout(scrapeAbout(doc));
 		team.setCoreSkills(scrapeCoreSkills(doc));
+		team.setInviteUrl(scrapeInveiteUrl(doc));
 		team.setTeamAchievements(scrapeTeamAchievements(doc));
 		team.setMembers(scrapeMembers(doc));
 
 		return team;
 	}
 
-
+	private String scrapeInveiteUrl(Document doc) {
+		return getText(doc, ".add-members a");
+	}
 
 	private String scrapeTeamName(Document doc) {
 		return getText(doc, ".team-header h1");

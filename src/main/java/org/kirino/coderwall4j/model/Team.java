@@ -7,6 +7,7 @@ public class Team {
 	private String url;
 	private String location;
 	private String about;
+	private String inviteUrl;
 	private List<String> coreSkills;
 	private List<User> members;
 	private List<TeamAchievement> teamAchievements;
@@ -65,6 +66,14 @@ public class Team {
 
 	public void setTeamAchievements(List<TeamAchievement> teamAchievements) {
 		this.teamAchievements = teamAchievements;
+	}
+
+	public String getInviteUrl() {
+		return inviteUrl;
+	}
+
+	public void setInviteUrl(String inviteUrl) {
+		this.inviteUrl = inviteUrl;
 	}
 
 }
